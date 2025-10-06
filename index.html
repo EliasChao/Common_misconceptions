@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover a new common misconception every day. Learn fascinating facts from science, history, arts & culture.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Common Misconception of the Day">
+    <meta property="og:description" content="Discover a new common misconception every day. Learn fascinating facts from science, history, arts & culture.">
+    <meta property="og:url" content="https://yourdomain.com">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Common Misconception of the Day">
+    <meta name="twitter:description" content="Discover a new common misconception every day.">
+
+    <title>Common Misconception of the Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo" id="logo-text">MythBusters</div>
+        <a href="https://buymeacoffee.com/eliaschao" class="header-donate-button" target="_blank" rel="noopener noreferrer">
+            ☕ <span id="support-text">Support Us</span>
+        </a>
+    </header>
+
+    <!-- Floating Theme Toggle -->
+    <button class="theme-toggle-fab" id="theme-toggle" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-layout">
+        <div class="container">
+            <!-- Top Info Bar -->
+            <div class="top-info-bar">
+                <div id="category-badge" class="category-badge">Loading...</div>
+                <div id="streak-display" class="streak-display-inline" style="display: none;"></div>
+            </div>
+
+            <!-- Progress Bar (visual only, no text) -->
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Main Misconception Text -->
+            <h1 id="misconception">Loading your daily misconception...</h1>
+            <button id="read-more-btn" class="read-more-btn" style="display: none;">Read More</button>
+
+            <!-- Fact Source Link -->
+            <a id="fact-source" href="#" target="_blank" rel="noopener noreferrer" class="fact-source">
+                📚 <span id="source-text">View Source</span>
+            </a>
+
+            <!-- Countdown Timer -->
+            <div id="countdown-container" class="countdown-container">
+                <p class="countdown-label" id="countdown-label">Next misconception in:</p>
+                <div id="countdown-timer" class="countdown-timer">00:00:00</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button id="language-toggle" aria-label="Toggle language">
+                    <span id="lang-text">Español 🇪🇸</span>
+                </button>
+                <button id="share-button" class="share-button" aria-label="Share this misconception">
+                    📤 <span id="share-text">Share</span>
+                </button>
+                <button id="bonus-button" class="bonus-button" aria-label="View bonus misconception" style="display: none;">
+                    ⭐ <span id="bonus-text">Bonus Fact</span>
+                </button>
+            </div>
+
+            <!-- Ad Space (placeholder for future ads) -->
+            <div class="ad-space" style="display: none;">
+                Ad Space
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="share-modal" style="display: none;">
+        <div class="share-modal-content">
+            <button id="close-modal" class="close-modal" aria-label="Close share modal">&times;</button>
+            <h2 id="share-modal-title">Share this misconception</h2>
+            <div class="share-buttons">
+                <a id="share-twitter" href="#" target="_blank" rel="noopener noreferrer" class="share-btn twitter">
+                    🐦 Twitter
+                </a>
+                <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="share-btn facebook">
+                    📘 Facebook
+                </a>
+                <a id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="share-btn whatsapp">
+                    💬 WhatsApp
+                </a>
+                <a id="share-reddit" href="#" target="_blank" rel="noopener noreferrer" class="share-btn reddit">
+                    🔗 Reddit
+                </a>
+                <button id="copy-link" class="share-btn copy">
+                    📋 <span id="copy-text">Copy Link</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Data sourced from <a id="source-link" href="https://en.wikipedia.org/wiki/List_of_common_misconceptions" target="_blank">Wikipedia</a>.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
