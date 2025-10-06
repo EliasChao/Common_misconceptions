@@ -18,12 +18,10 @@ const sourceText = document.getElementById('source-text');
 const countdownTimer = document.getElementById('countdown-timer');
 const countdownLabel = document.getElementById('countdown-label');
 const streakDisplay = document.getElementById('streak-display');
-const languageToggleButton = document.getElementById('language-toggle');
-const langText = document.getElementById('lang-text');
+const languageFab = document.getElementById('language-fab');
+const languageFabText = document.getElementById('language-fab-text');
 const shareButton = document.getElementById('share-button');
-const shareText = document.getElementById('share-text');
-const bonusButton = document.getElementById('bonus-button');
-const bonusText = document.getElementById('bonus-text');
+const shareIcon = document.getElementById('share-icon');
 const shareModal = document.getElementById('share-modal');
 const shareModalTitle = document.getElementById('share-modal-title');
 const closeModal = document.getElementById('close-modal');
@@ -84,7 +82,7 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    themeIcon.textContent = theme === 'dark' ? '◑' : '◐';
 }
 
 // ===== Language Detection =====
@@ -191,47 +189,6 @@ function updateStreak() {
     return streakData.currentStreak;
 }
 
-// ===== Bonus Misconception Feature =====
-function canShowBonus() {
-    const bonusData = StorageManager.get('bonus_data', {
-        lastBonusDate: null,
-        bonusesThisWeek: 0,
-        weekStart: null
-    });
-
-    const today = new Date();
-    const lastBonus = bonusData.lastBonusDate ? new Date(bonusData.lastBonusDate) : null;
-    const weekStart = bonusData.weekStart ? new Date(bonusData.weekStart) : null;
-
-    const daysSinceWeekStart = weekStart ? Math.floor((today - weekStart) / (1000 * 60 * 60 * 24)) : 8;
-    if (daysSinceWeekStart >= 7 || !weekStart) {
-        bonusData.bonusesThisWeek = 0;
-        bonusData.weekStart = today.toLocaleDateString();
-        StorageManager.set('bonus_data', bonusData);
-    }
-
-    if (lastBonus && lastBonus.toLocaleDateString() === today.toLocaleDateString()) {
-        return false;
-    }
-
-    if (bonusData.bonusesThisWeek >= 1) {
-        return false;
-    }
-
-    return true;
-}
-
-function useBonus() {
-    const bonusData = StorageManager.get('bonus_data', {
-        lastBonusDate: null,
-        bonusesThisWeek: 0,
-        weekStart: new Date().toLocaleDateString()
-    });
-
-    bonusData.lastBonusDate = new Date().toLocaleDateString();
-    bonusData.bonusesThisWeek += 1;
-    StorageManager.set('bonus_data', bonusData);
-}
 
 // ===== Main Display Function =====
 async function showDailyMisconception() {
@@ -311,13 +268,10 @@ function displayMisconception(misconception) {
     if (streak > 0) {
         streakDisplay.style.display = 'block';
         const streakText = currentLanguage === 'en'
-            ? `🔥 ${streak} day${streak > 1 ? 's' : ''} streak!`
-            : `🔥 ¡Racha de ${streak} día${streak > 1 ? 's' : ''}!`;
+            ? `${streak} day${streak > 1 ? 's' : ''} streak 🔥`
+            : `Racha de ${streak} día${streak > 1 ? 's' : ''} 🔥`;
         streakDisplay.textContent = streakText;
     }
-
-    // Update bonus button
-    updateBonusButton();
 }
 
 function toggleReadMore() {
@@ -344,25 +298,23 @@ function toggleLanguage() {
 
 function updateUILanguage() {
     if (currentLanguage === 'en') {
-        langText.textContent = 'Español 🇪🇸';
+        languageFabText.textContent = 'ES';
         sourceLink.href = 'https://en.wikipedia.org/wiki/List_of_common_misconceptions';
         document.documentElement.lang = 'en';
-        document.title = 'Common Misconception of the Day';
+        document.title = 'Not Like That - Daily Misconceptions';
         countdownLabel.textContent = 'Next misconception in:';
         sourceText.textContent = 'View Source';
-        shareText.textContent = 'Share';
-        logoText.textContent = 'MythBusters';
-        supportText.textContent = 'Support Us';
+        logoText.textContent = 'Not Like That';
+        supportText.textContent = 'Buy me a coffee';
     } else {
-        langText.textContent = 'English 🇬🇧';
+        languageFabText.textContent = 'EN';
         sourceLink.href = 'https://es.wikipedia.org/wiki/Anexo:Falsos_mitos';
         document.documentElement.lang = 'es';
-        document.title = 'Falso Mito del Día';
+        document.title = 'No Es Así - Mitos Diarios';
         countdownLabel.textContent = 'Próximo mito en:';
         sourceText.textContent = 'Ver Fuente';
-        shareText.textContent = 'Compartir';
-        logoText.textContent = 'CazaMitos';
-        supportText.textContent = 'Apóyanos';
+        logoText.textContent = 'No Es Así';
+        supportText.textContent = 'Invítame un café';
     }
 }
 
@@ -383,34 +335,6 @@ function updateCountdownDisplay() {
     countdownTimer.textContent = formatted;
 }
 
-// ===== Bonus Button =====
-function updateBonusButton() {
-    if (canShowBonus()) {
-        bonusButton.style.display = 'inline-block';
-        bonusButton.disabled = false;
-        bonusText.textContent = currentLanguage === 'en' ? 'Bonus Fact' : 'Hecho Extra';
-    } else {
-        bonusButton.style.display = 'none';
-    }
-}
-
-function showBonusMisconception() {
-    if (!canShowBonus()) {
-        return;
-    }
-
-    const misconceptions = getMisconceptions(currentLanguage);
-    const shown = getAlreadyShown(currentLanguage);
-
-    const randomIndex = getRandomUnshownIndex(misconceptions, shown);
-
-    if (randomIndex !== null) {
-        const bonusMisconception = misconceptions[randomIndex];
-        displayMisconception(bonusMisconception);
-        useBonus();
-        updateBonusButton();
-    }
-}
 
 // ===== Social Sharing =====
 function openShareModal() {
@@ -490,9 +414,8 @@ async function handleShare() {
 }
 
 // ===== Event Listeners =====
-languageToggleButton.addEventListener('click', toggleLanguage);
+languageFab.addEventListener('click', toggleLanguage);
 shareButton.addEventListener('click', handleShare);
-bonusButton.addEventListener('click', showBonusMisconception);
 closeModal.addEventListener('click', closeShareModal);
 document.getElementById('copy-link').addEventListener('click', copyLinkToClipboard);
 themeToggle.addEventListener('click', toggleTheme);

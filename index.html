@@ -26,16 +26,21 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo" id="logo-text">MythBusters</div>
+        <div class="logo" id="logo-text">Not Like That</div>
         <a href="https://buymeacoffee.com/eliaschao" class="header-donate-button" target="_blank" rel="noopener noreferrer">
-            ☕ <span id="support-text">Support Us</span>
+            <span id="support-text">Buy me a coffee</span>
         </a>
     </header>
 
-    <!-- Floating Theme Toggle -->
-    <button class="theme-toggle-fab" id="theme-toggle" aria-label="Toggle dark mode">
-        <span id="theme-icon">🌙</span>
-    </button>
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="language-fab" id="language-fab" aria-label="Toggle language">
+            <span id="language-fab-text">ES</span>
+        </button>
+        <button class="theme-toggle-fab" id="theme-toggle" aria-label="Toggle dark mode">
+            <span id="theme-icon">◐</span>
+        </button>
+    </div>
 
     <!-- Main Content -->
     <div class="main-layout">
@@ -68,23 +73,15 @@
                 <div id="countdown-timer" class="countdown-timer">00:00:00</div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="button-group">
-                <button id="language-toggle" aria-label="Toggle language">
-                    <span id="lang-text">Español 🇪🇸</span>
-                </button>
-                <button id="share-button" class="share-button" aria-label="Share this misconception">
-                    📤 <span id="share-text">Share</span>
-                </button>
-                <button id="bonus-button" class="bonus-button" aria-label="View bonus misconception" style="display: none;">
-                    ⭐ <span id="bonus-text">Bonus Fact</span>
-                </button>
-            </div>
-
             <!-- Ad Space (placeholder for future ads) -->
             <div class="ad-space" style="display: none;">
                 Ad Space
             </div>
+
+            <!-- Share Button (bottom right of card) -->
+            <button id="share-button" class="share-button-corner" aria-label="Share this misconception">
+                <span id="share-icon">⤴</span>
+            </button>
         </div>
     </div>
 
