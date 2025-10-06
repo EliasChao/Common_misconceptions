@@ -92,7 +92,7 @@ body {
 }
 
 [data-theme="dark"] .header-donate-button {
-    color: #000;
+    color: #fff;
 }
 
 .header-donate-button:hover {
