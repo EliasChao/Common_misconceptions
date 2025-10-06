@@ -91,6 +91,10 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+[data-theme="dark"] .header-donate-button {
+    color: #000;
+}
+
 .header-donate-button:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(255, 221, 0, 0.4);
@@ -558,8 +562,8 @@ footer a:hover {
     }
 
     .header-donate-button {
-        font-size: 0.85rem;
-        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.9rem;
     }
 
     .share-modal-content {
@@ -589,9 +593,6 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .header-donate-button span {
-        display: none;
-    }
 
     .share-modal-content {
         padding: 1.5rem;
