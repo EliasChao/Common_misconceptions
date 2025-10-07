@@ -340,13 +340,21 @@ function updateCountdownDisplay() {
 function openShareModal() {
     shareModal.style.display = 'flex';
     updateShareLinks();
+    updateSharePreview();
 
     if (currentLanguage === 'en') {
         shareModalTitle.textContent = 'Share this misconception';
-        copyText.textContent = 'Copy Link';
     } else {
         shareModalTitle.textContent = 'Compartir este mito';
-        copyText.textContent = 'Copiar Enlace';
+    }
+}
+
+function updateSharePreview() {
+    if (currentMisconception) {
+        document.getElementById('share-preview-category').textContent = currentMisconception.category;
+        document.getElementById('share-preview-text').textContent = currentMisconception.text;
+        document.getElementById('share-preview-logo').textContent =
+            currentLanguage === 'en' ? 'Not Like That' : 'No Es Así';
     }
 }
 
@@ -371,6 +379,9 @@ function updateShareLinks() {
 
     document.getElementById('share-reddit').href =
         `https://reddit.com/submit?url=${encodedUrl}&title=${encodedText}`;
+
+    document.getElementById('share-mastodon').href =
+        `https://mastodon.social/share?text=${encodedText}%20${encodedUrl}`;
 }
 
 async function copyLinkToClipboard() {

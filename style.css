@@ -384,7 +384,7 @@ h1.clamped {
     background: var(--bg-secondary);
     border-radius: 20px;
     padding: 2rem;
-    max-width: 500px;
+    max-width: 550px;
     width: 90%;
     position: relative;
     box-shadow: var(--shadow-lg);
@@ -402,7 +402,7 @@ h1.clamped {
     }
 }
 
-.share-modal h2 {
+.share-modal h3 {
     color: var(--text-primary);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
@@ -431,52 +431,122 @@ h1.clamped {
     color: white;
 }
 
-.share-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+/* Share Preview Card */
+.share-preview {
+    margin-bottom: 2rem;
 }
 
-.share-btn {
-    padding: 1rem;
+.share-preview-card {
+    background: var(--bg-tertiary);
     border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
 }
 
-.share-btn.twitter {
+.share-preview-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--gradient);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.share-preview-text {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.share-preview-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.share-preview-logo {
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Share Options - Circular Icons */
+.share-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.share-icon-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.share-icon-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.share-icon-btn.twitter {
     background: #1DA1F2;
     color: white;
 }
 
-.share-btn.facebook {
+.share-icon-btn.facebook {
     background: #4267B2;
     color: white;
 }
 
-.share-btn.whatsapp {
+.share-icon-btn.whatsapp {
     background: #25D366;
     color: white;
 }
 
-.share-btn.reddit {
+.share-icon-btn.reddit {
     background: #FF4500;
     color: white;
 }
 
-.share-btn.copy {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
+.share-icon-btn.mastodon {
+    background: #6364FF;
+    color: white;
 }
 
-.share-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+.share-icon-btn.copy {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.share-icon-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.share-icon-btn:active {
+    transform: translateY(0) scale(1);
 }
 
 /* Footer */
