@@ -417,11 +417,8 @@ async function tryNativeShare() {
     return false;
 }
 
-async function handleShare() {
-    const nativeShared = await tryNativeShare();
-    if (!nativeShared) {
-        openShareModal();
-    }
+function handleShare() {
+    openShareModal();
 }
 
 // ===== Event Listeners =====
@@ -429,6 +426,7 @@ languageFab.addEventListener('click', toggleLanguage);
 shareButton.addEventListener('click', handleShare);
 closeModal.addEventListener('click', closeShareModal);
 document.getElementById('copy-link').addEventListener('click', copyLinkToClipboard);
+document.getElementById('native-share').addEventListener('click', tryNativeShare);
 themeToggle.addEventListener('click', toggleTheme);
 readMoreBtn.addEventListener('click', toggleReadMore);
 

@@ -540,6 +540,11 @@ h1.clamped {
     border: 2px solid var(--border-color);
 }
 
+.share-icon-btn.native-share {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
 .share-icon-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
